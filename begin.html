@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1560533560939511',
+      xfbml      : true,
+      version    : 'v2.5'
+    });
+    FB.getLoginStatus(function(response){
+  		if (response.status === 'connected') {
+  			document.getElementById('status').innerHTML = "YES";
+  		} else if (response.status == 'not_authorized') {
+				document.getElementById('status').innerHTML = "NO";
+  		}
+    });
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+
+  function login() {
+    FB.login(function(response) {
+      if (response.status === 'connected') {
+        document.getElementById('status').innerHTML = "YES";
+      } else if (response.status == 'not_authorized') {
+        document.getElementById('status').innerHTML = "NO";
+      }
+    });
+  }
+
+</script>
+
+<div id="status">status</div>
+<button onclick="login()">Login</button>
+
+</body>
+</html>
